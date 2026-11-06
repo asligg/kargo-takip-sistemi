@@ -1,0 +1,84 @@
+@import "tailwindcss";
+
+@theme {
+  /* Yeşil Kargo marka renkleri (orman yeşili) */
+  --color-brand-50: #effaf4;
+  --color-brand-100: #d8f3e3;
+  --color-brand-200: #b3e6c9;
+  --color-brand-300: #7fd2a7;
+  --color-brand-400: #4ab77f;
+  --color-brand-500: #279b62;
+  --color-brand-600: #1b7d4e;
+  --color-brand-700: #186441;
+  --color-brand-800: #164f36;
+  --color-brand-900: #12402d;
+
+  --color-accent-400: #fbbf24;
+  --color-accent-500: #f59e0b;
+  --color-accent-600: #d97706;
+
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+}
+
+:root {
+  color-scheme: light;
+}
+
+body {
+  @apply bg-slate-50 text-slate-800 antialiased;
+}
+
+/* Klavye ile gezinmede odak görünürlüğü */
+:focus-visible {
+  outline: 2px solid var(--color-brand-500);
+  outline-offset: 2px;
+}
+
+/*
+ * Erişilebilir mod (html.a11y): yazılar %125 büyür (tüm ölçüler rem olduğundan arayüz orantılı büyür),
+ * gri tonlar koyulaşarak kontrast artar, bağlantıların altı çizilir, odak çerçevesi kalınlaşır.
+ */
+html.a11y {
+  font-size: 125%;
+  --color-slate-300: #64748b;
+  --color-slate-400: #475569;
+  --color-slate-500: #334155;
+  --color-slate-600: #1e293b;
+  --color-slate-700: #0f172a;
+  --color-slate-800: #020617;
+  --color-slate-200: #94a3b8;
+  --color-slate-100: #e2e8f0;
+}
+
+html.a11y body {
+  @apply bg-white;
+  line-height: 1.65;
+}
+
+html.a11y main a:not([class*="bg-"]) {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+html.a11y :focus-visible {
+  outline: 4px solid var(--color-accent-500);
+  outline-offset: 3px;
+}
+
+html.a11y *,
+html.a11y *::before,
+html.a11y *::after {
+  animation-duration: 0.01ms !important;
+  transition-duration: 0.01ms !important;
+}
+
+/* Leaflet harita kapsayıcısı */
+.leaflet-container {
+  font-family: inherit;
+  border-radius: 0.75rem;
+  /* Leaflet katmanları z-index 400–1000 kullanır; haritayı kendi katmanına hapseder,
+     böylece açılır menüler ve yapışkan üst bar haritanın üstünde kalır */
+  position: relative;
+  z-index: 0;
+  isolation: isolate;
+}
